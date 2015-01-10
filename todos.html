@@ -5,10 +5,27 @@
 <body>
   <h1>Welcome to Meteor!</h1>
 
+  {{> todos}}
   {{> hello}}
 </body>
 
 <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
+</template>
+
+<template name="todos">
+  {{#each todos}}
+    {{> todo}}
+  {{/each}}
+  {{> createTodo}}
+</template>
+
+<template name="todo">
+  <p>{{name}}</p>
+</template>
+
+<template name="createTodo">
+  <input id="newTodo" type="text">
+  <button>Save</button>
 </template>
