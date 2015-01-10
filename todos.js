@@ -19,5 +19,20 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
+    Todos = new Mongo.Collection("todos");
+
+    function Todo(name) {
+      this.name = name;
+    }
+
+    Todo.prototype = {
+      valid: function() {
+        return this.name && this.name != "";
+      },
+
+      save: function() {
+        Todos.insert({name: this.name});
+      }
+    };
   });
 }
